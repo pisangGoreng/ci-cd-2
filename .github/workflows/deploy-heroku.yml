@@ -1,0 +1,23 @@
+name: 'Deploy with herokiu'
+
+on:
+  push:
+    branches:
+      - master
+      - development
+      - staging
+      - uat
+      - production
+
+jobs:
+  build:
+    name: "deploy apps to heroku server"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "kenzo-0070-deployment"
+          heroku_email: "7ofpentacles@gmail.com"
